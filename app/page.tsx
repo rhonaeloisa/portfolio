@@ -573,7 +573,7 @@ export default function Home() {
                   together!
                 </h2>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-ink/75">
-                  Send me a message directly through the contact form.
+                  Fill out the form below and send your message directly to my email.
                 </p>
               </div>
               <ContactForm />
