@@ -527,10 +527,10 @@ export default function Home() {
               shape="rounded-pebble"
             />
           </Reveal>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.2} className="lg:col-span-2">
             <div
               id="skills"
-              className="h-full scroll-mt-24 rounded-xl bg-alabaster p-8 shadow-soft sm:p-10 lg:col-span-2"
+              className="h-full w-full scroll-mt-24 rounded-xl bg-alabaster p-8 shadow-soft sm:p-10"
             >
               <h3 className="font-serif text-2xl font-bold text-camel">Skills</h3>
               <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
