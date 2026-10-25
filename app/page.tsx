@@ -521,7 +521,7 @@ export default function Home() {
           <Reveal delay={0.1}>
             <Timeline
               title="Education"
-              when="2022 - 2026"
+              when="2023 - Present"
               role="BS Information Technology"
               org="Bicol University"
               shape="rounded-blob2"
