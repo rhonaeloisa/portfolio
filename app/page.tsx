@@ -508,7 +508,7 @@ export default function Home() {
         id="experience"
         className="mx-auto max-w-6xl scroll-mt-20 px-5 py-16 sm:px-8"
       >
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-2">
           <Reveal>
             <Timeline
               title="Experience"
@@ -530,10 +530,10 @@ export default function Home() {
           <Reveal delay={0.2}>
             <div
               id="skills"
-              className="h-full scroll-mt-24 rounded-3xl bg-alabaster p-8 shadow-soft sm:p-10"
+              className="h-full scroll-mt-24 rounded-3xl bg-alabaster p-8 shadow-soft sm:p-10 lg:col-span-2"
             >
               <h3 className="font-serif text-2xl font-bold text-camel">Skills</h3>
-              <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {SKILL_GROUPS.map((group) => (
                   <div key={group.label}>
                     <p className="text-xs font-semibold uppercase tracking-[0.12em] text-camel">
