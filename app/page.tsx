@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -573,8 +573,7 @@ export default function Home() {
                   together!
                 </h2>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-ink/75">
-                  Send me a message and Gmail will open with your email ready to
-                  send.
+                  Send me a message directly through the contact form.
                 </p>
               </div>
               <ContactForm />
@@ -633,29 +632,13 @@ function Timeline({
 }
 
 function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const name = String(formData.get("name") ?? "").trim();
-    const senderEmail = String(formData.get("email") ?? "").trim();
-    const message = String(formData.get("message") ?? "").trim();
-    const subject = `Portfolio inquiry from ${name || "a visitor"}`;
-    const body = [`Name: ${name}`, `Email: ${senderEmail}`, "", message].join("\n");
-    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-      EMAIL
-    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
-    setSubmitted(true);
-  }
-
   return (
     <form
-      onSubmit={handleSubmit}
+      action="https://formspree.io/f/mgaaovyw"
+      method="POST"
       className="rounded-3xl bg-alabaster/75 p-5 shadow-soft sm:p-6"
     >
+      <input type="hidden" name="_subject" value="New portfolio inquiry" />
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-medium text-ink">
           Name
@@ -697,11 +680,6 @@ function ContactForm() {
         >
           Send Email <ArrowRight size={16} />
         </button>
-        {submitted && (
-          <p className="text-xs text-ink/70" role="status">
-            Gmail compose opened with your message.
-          </p>
-        )}
       </div>
     </form>
   );
