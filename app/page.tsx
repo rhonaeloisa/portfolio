@@ -304,7 +304,7 @@ export default function Home() {
                 <br />
                 <span className="ml-10 sm:ml-16">folio</span>
               </h1>
-              <span className="mt-5 inline-flex -rotate-2 whitespace-nowrap rounded-full bg-silk px-4 py-2 text-xs font-semibold tracking-wide text-ink shadow-soft sm:absolute sm:left-[15rem] sm:top-[6rem] sm:mt-0 sm:px-5 sm:py-2.5 sm:text-sm lg:left-[16rem] lg:top-[7rem]">
+              <span className="mt-5 inline-flex -rotate-6 whitespace-nowrap rounded-full bg-silk px-4 py-2 text-xs font-semibold tracking-wide text-ink shadow-soft sm:absolute sm:left-[20rem] sm:top-[6rem] sm:mt-0 sm:px-5 sm:py-2.5 sm:text-sm lg:left-[24rem] lg:top-[7rem]">
                 UI/UX Designer
               </span>
             </div>
