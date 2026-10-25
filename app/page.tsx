@@ -515,7 +515,7 @@ export default function Home() {
               when="2026"
               role="UI/UX Designer"
               org="LexTrack System Integration & Automated Testing"
-              shape="rounded-blob"
+              shape="rounded-pebble"
             />
           </Reveal>
           <Reveal delay={0.1}>
@@ -524,13 +524,13 @@ export default function Home() {
               when="2023 - Present"
               role="BS Information Technology"
               org="Bicol University"
-              shape="rounded-blob2"
+              shape="rounded-pebble"
             />
           </Reveal>
           <Reveal delay={0.2}>
             <div
               id="skills"
-              className="h-full scroll-mt-24 rounded-3xl bg-alabaster p-8 shadow-soft sm:p-10 lg:col-span-2"
+              className="h-full scroll-mt-24 rounded-xl bg-alabaster p-8 shadow-soft sm:p-10 lg:col-span-2"
             >
               <h3 className="font-serif text-2xl font-bold text-camel">Skills</h3>
               <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -616,7 +616,7 @@ function Timeline({
 }) {
   return (
     <div
-      className={`relative h-full overflow-hidden ${shape} bg-cream/70 p-8 pb-12 shadow-soft sm:p-10`}
+      className={`relative mx-auto h-full w-full max-w-[27rem] overflow-hidden ${shape} bg-cream/70 p-8 pb-12 shadow-soft sm:p-10`}
     >
       <h3 className="font-serif text-2xl font-bold text-camel">{title}</h3>
       <ol className="relative mt-6 border-l border-camel/50 pl-6">
