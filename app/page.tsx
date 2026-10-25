@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -566,17 +566,18 @@ export default function Home() {
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-cream px-8 py-14 shadow-soft sm:px-14">
             <Blob className="-right-16 -top-20 h-64 w-64 rounded-blob bg-silk/60 blur-xl" />
             <Blob className="-bottom-24 left-1/3 h-56 w-56 rounded-blob2 bg-alabaster/80 blur-xl" />
-            <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-              <h2 className="max-w-xl font-serif text-3xl font-bold leading-tight text-camel sm:text-5xl">
-                Have a project in mind? Let&apos;s build something amazing
-                together!
-              </h2>
-              <a
-                href={`mailto:${EMAIL}`}
-                className="inline-flex shrink-0 items-center gap-2 rounded-full bg-camel px-8 py-4 text-base font-semibold text-ink shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
-              >
-                Get In Touch <ArrowRight size={18} />
-              </a>
+            <div className="relative grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
+              <div>
+                <h2 className="max-w-xl font-serif text-3xl font-bold leading-tight text-camel sm:text-5xl">
+                  Have a project in mind? Let&apos;s build something amazing
+                  together!
+                </h2>
+                <p className="mt-5 max-w-md text-base leading-relaxed text-ink/75">
+                  Send me a message and Gmail will open with your email ready to
+                  send.
+                </p>
+              </div>
+              <ContactForm />
             </div>
           </div>
         </Reveal>
@@ -628,5 +629,80 @@ function Timeline({
         </li>
       </ol>
     </div>
+  );
+}
+
+function ContactForm() {
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "").trim();
+    const senderEmail = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+    const subject = `Portfolio inquiry from ${name || "a visitor"}`;
+    const body = [`Name: ${name}`, `Email: ${senderEmail}`, "", message].join("\n");
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      EMAIL
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
+    setSubmitted(true);
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-3xl bg-alabaster/75 p-5 shadow-soft sm:p-6"
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="text-sm font-medium text-ink">
+          Name
+          <input
+            name="name"
+            type="text"
+            required
+            autoComplete="name"
+            className="mt-2 w-full rounded-2xl border border-camel/25 bg-mist/80 px-4 py-3 font-normal outline-none transition focus:border-camel focus:ring-2 focus:ring-silk"
+            placeholder="Your name"
+          />
+        </label>
+        <label className="text-sm font-medium text-ink">
+          Email
+          <input
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            className="mt-2 w-full rounded-2xl border border-camel/25 bg-mist/80 px-4 py-3 font-normal outline-none transition focus:border-camel focus:ring-2 focus:ring-silk"
+            placeholder="you@example.com"
+          />
+        </label>
+      </div>
+      <label className="mt-4 block text-sm font-medium text-ink">
+        Message
+        <textarea
+          name="message"
+          required
+          rows={4}
+          className="mt-2 w-full resize-y rounded-2xl border border-camel/25 bg-mist/80 px-4 py-3 font-normal outline-none transition focus:border-camel focus:ring-2 focus:ring-silk"
+          placeholder="Tell me a little about your project..."
+        />
+      </label>
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <button
+          type="submit"
+          className="inline-flex items-center gap-2 rounded-full bg-camel px-6 py-3 text-sm font-semibold text-ink shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+        >
+          Send Email <ArrowRight size={16} />
+        </button>
+        {submitted && (
+          <p className="text-xs text-ink/70" role="status">
+            Gmail compose opened with your message.
+          </p>
+        )}
+      </div>
+    </form>
   );
 }
